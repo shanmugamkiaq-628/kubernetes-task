@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-scaling
+  namespace: devops
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-scaling
+  template:
+    metadata:
+      labels:
+        app: nginx-scaling
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
